@@ -1,1 +1,10 @@
-/node_modules/*
+## Mac OSX ##
+.DS_Store
+
+## NPM ##
+node_modules/
+
+## Compiled files ##
+compiled/
+
+secrets/
