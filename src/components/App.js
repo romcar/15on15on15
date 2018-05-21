@@ -27,16 +27,18 @@ class App extends React.Component{
       image: newAnimalProfile[1],
       description: newAnimalProfile[2]
     }
+
     console.log('saving new animal', params)
+
     fetch('http://localhost:3000', {
-      method: 'POST',
-      body: JSON.stringify(params)
-   //    headers :{
-   //      'Content-Type': 'application/json',
-   //    }
-   // })
+      method: 'post',
+      body: JSON.stringify(params),
+      headers :{
+        'Content-Type': 'application/json',
+      }
+    })
     .then((response) => console.log('Animal Saved'))
-    .catch((err) => console.error(err));
+    .catch((err) => console.log(err));
   }
 
   render() {
