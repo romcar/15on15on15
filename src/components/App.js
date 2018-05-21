@@ -20,10 +20,29 @@ class App extends React.Component{
     })
     .catch( err => console.error(err));
   }
+
+  saveNewAnimal(newAnimalProfile) {
+    var params = {
+      name: newAnimalProfile[0],
+      image: newAnimalProfile[1],
+      description: newAnimalProfile[2]
+    }
+    console.log('saving new animal', params)
+    fetch('http://localhost:3000', {
+      method: 'POST',
+      body: JSON.stringify(params)
+   //    headers :{
+   //      'Content-Type': 'application/json',
+   //    }
+   // })
+    .then((response) => console.log('Animal Saved'))
+    .catch((err) => console.error(err));
+  }
+
   render() {
     return (
     <div>
-      <input type="text" name="search"/> <button></button>
+      <AddAnimal onClick={this.saveNewAnimal.bind(this)}/>
       <AnimalTable animals={this.state.data}/>
     </div>
     )

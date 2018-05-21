@@ -12,6 +12,7 @@ exports.handleRequest = function(request, response) {
   var action = actions[request.method];
 console.log(request.method, ' method invoked')
   if(action){
+    console.log(request.body)
     action(request, response);
   } else {
     response.writeHead(404, 'Not Found');
@@ -29,6 +30,7 @@ var actions = {
     });
   },
   'POST': (request, response) => {
+    console.log('What did you give me to post', request.body)
     var params = [ request.body.name, request.body.image, request.body.description ];
 
     var queryString = 'INSERT INTO animals(name, image, description) VALUES(?, ?, ?)';
@@ -38,6 +40,7 @@ var actions = {
     });
   },
   'OPTIONS': (request, response) => {
-    response.end(200, headers);
+    response.writeHead(200, headers);
+    response.end();
   }
 };
